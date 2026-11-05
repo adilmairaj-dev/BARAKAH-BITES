@@ -7,9 +7,17 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "restaurant",
+    "reservation",
+    "food-ordering",
+    "angular",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Adil Mairaj",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "bcrypt": "^6.0.0",

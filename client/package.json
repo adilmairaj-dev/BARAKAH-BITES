@@ -10,6 +10,8 @@
     "test": "ng test"
   },
   "private": true,
+  "author": "Adil Mairaj",
+  "license": "MIT",
   "packageManager": "npm@11.21.1",
   "dependencies": {
     "@angular/common": "^21.2.0",
