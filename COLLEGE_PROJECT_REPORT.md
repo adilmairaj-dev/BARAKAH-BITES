@@ -1,22 +1,4 @@
-# BARAKAH BITES — RESTAURANT RESERVATION & ONLINE ORDERING SYSTEM
-### College Project Documentation & Source Code Report
-**Submitted by:** Adil Mairaj  
-**Technology Stack:** Angular 21, Tailwind CSS v4, Node.js, Express.js, MongoDB Atlas (Mongoose ODM)  
-**Academic Subject:** Full Stack Web Development  
-
----
-
-## 1. Project Overview & Architecture
-
-**Barakah Bites** is a modern, responsive full-stack restaurant application designed for fine-dining management. It bridges customer interactions (browsing categorized menus, reserving dining tables, and placing food delivery orders) with a centralized restaurant administration dashboard.
-
-* **Frontend Architecture:** Angular 21 with Standalone Components, Signals-based reactive state management via Zustand, and Tailwind CSS v4 styling.
-* **Backend Architecture:** RESTful API built on Node.js and Express.js (ES Modules) connected to a cloud-hosted MongoDB Atlas cluster.
-* **Security & Auth:** JWT tokens with HTTP-only cookies, password hashing with bcrypt, and Angular route guards for guest and role-based access control.
-
----
-
-## 2. Frontend Source Code (Client Side)
+2. Frontend Source Code (Client Side)
 
 ### 2.1 `client/package.json`
 ```json
@@ -408,15 +390,3 @@ app.get("/", (req, res) => {
 })
 
 export default app
-```
-
----
-
-## 4. Academic Project Summary
-
-* **Project Title:** Barakah Bites — Restaurant Reservation & Table Management System
-* **Author / Developer:** Adil Mairaj
-* **Architecture:** Decoupled Full-Stack Architecture (Client-Server Model)
-* **Client Implementation:** Angular 21, TypeScript, Tailwind CSS v4, Signals, Zustand
-* **Server Implementation:** Node.js, Express.js (ES Modules), Mongoose, JWT Authentication
-* **Status:** Verified, Tested, and Fully Functional
