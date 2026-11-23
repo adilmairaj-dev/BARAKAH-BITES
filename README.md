@@ -44,6 +44,24 @@ A modern, full-stack web application designed for fine-dining restaurants. **Bar
 
 ---
 
+## 📸 Application Screenshots
+
+### 🌟 Customer Experience & Dining Reservation
+| 01. Customer Authentication & Sign-in | 02. Landing Page & Restaurant Timings |
+| :---: | :---: |
+| ![Customer Login](screenshots/01-customer-login.jpg) | ![Home Landing](screenshots/02-home-landing.jpg) |
+
+| 03. Table Selection & Floor Layout | 04. Customer Bookings Slide-over Drawer |
+| :---: | :---: |
+| ![Table Reservation](screenshots/03-table-reservation.jpg) | ![My Bookings Drawer](screenshots/04-my-bookings-drawer.jpg) |
+
+### 🛡️ Restaurant Administration & Menu Management
+| 05. Live Dashboard & Customer Orders | 06. Categorized Menu Catalog & Live Price Editing |
+| :---: | :---: |
+| ![Admin Dashboard](screenshots/05-admin-dashboard.jpg) | ![Admin Menu Management](screenshots/06-admin-menu-management.jpg) |
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Frontend
