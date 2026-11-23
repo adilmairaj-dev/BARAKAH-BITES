@@ -6,132 +6,23 @@
 
 ---
 
-## 1. Project Directory Structure
+## 1. Project Overview & Architecture
 
-```text
-barakah-bites
-├── client
-│   ├── .angular
-│   ├── dist
-│   ├── node_modules
-│   ├── public
-│   │   ├── auth-food.jpg
-│   │   ├── favicon.ico
-│   │   ├── food-black-forest-cake.jpg
-│   │   ├── food-chicken-corn-momos.jpg
-│   │   ├── food-chicken-roast.jpg
-│   │   ├── food-lime-lemon-mojito.jpg
-│   │   ├── food-mix-fruit-kiwi.jpg
-│   │   ├── food-red-velvet-cake.jpg
-│   │   ├── food-white-sauce-pasta.jpg
-│   │   ├── menu-beverages.jpg
-│   │   ├── menu-dessert.jpg
-│   │   ├── menu-main.jpg
-│   │   └── menu-starters.jpg
-│   ├── src
-│   │   ├── app
-│   │   │   ├── components
-│   │   │   │   ├── admin-dock.component.ts
-│   │   │   │   ├── auth-shell.component.ts
-│   │   │   │   ├── booking-modal.component.ts
-│   │   │   │   ├── file-picker.component.ts
-│   │   │   │   ├── food-card.component.ts
-│   │   │   │   ├── food-edit-modal.component.ts
-│   │   │   │   ├── food-modal.component.ts
-│   │   │   │   ├── icon.component.ts
-│   │   │   │   ├── modal-shell.component.ts
-│   │   │   │   ├── profile-modal.component.ts
-│   │   │   │   ├── reservations-drawer.component.ts
-│   │   │   │   ├── table-card.component.ts
-│   │   │   │   └── table-modal.component.ts
-│   │   │   ├── core
-│   │   │   │   ├── api.ts
-│   │   │   │   ├── config.ts
-│   │   │   │   ├── guards.ts
-│   │   │   │   ├── models.ts
-│   │   │   │   └── store-signal.ts
-│   │   │   ├── pages
-│   │   │   │   ├── dashboard.page.ts
-│   │   │   │   ├── home.page.ts
-│   │   │   │   ├── login.page.ts
-│   │   │   │   ├── menu.page.ts
-│   │   │   │   ├── order.page.ts
-│   │   │   │   ├── register.page.ts
-│   │   │   │   ├── restaurant-login.page.ts
-│   │   │   │   ├── tables.page.ts
-│   │   │   │   └── user-layout.page.ts
-│   │   │   ├── store
-│   │   │   │   ├── admin.store.ts
-│   │   │   │   ├── auth.store.ts
-│   │   │   │   ├── catalog.store.ts
-│   │   │   │   ├── order.store.ts
-│   │   │   │   └── reservation.store.ts
-│   │   │   ├── app.component.ts
-│   │   │   ├── app.config.ts
-│   │   │   └── app.routes.ts
-│   │   ├── index.html
-│   │   ├── main.ts
-│   │   └── styles.css
-│   ├── angular.json
-│   ├── package.json
-│   ├── tsconfig.app.json
-│   └── tsconfig.json
-│
-└── server
-    ├── node_modules
-    ├── src
-    │   ├── configs
-    │   │   ├── env.js
-    │   │   └── imageKit/config.js
-    │   ├── controllers
-    │   │   ├── food.controller.js
-    │   │   ├── order.controller.js
-    │   │   ├── reservations.controller.js
-    │   │   ├── restaurant.controller.js
-    │   │   ├── tables.controller.js
-    │   │   └── user.controller.js
-    │   ├── db
-    │   │   └── db.js
-    │   ├── middlewares
-    │   │   ├── error.middleware.js
-    │   │   ├── multer.middleware.js
-    │   │   ├── oauth.middleware.js
-    │   │   └── restaurants.middleware.js
-    │   ├── models
-    │   │   ├── food.models.js
-    │   │   ├── order.models.js
-    │   │   ├── reservations.models.js
-    │   │   ├── restaurants.models.js
-    │   │   ├── tables.models.js
-    │   │   └── user.models.js
-    │   ├── routes
-    │   │   ├── food.route.js
-    │   │   ├── order.route.js
-    │   │   ├── reservations.route.js
-    │   │   ├── restaurants.route.js
-    │   │   ├── table.route.js
-    │   │   └── user.route.js
-    │   ├── utils
-    │   │   ├── apiError.js
-    │   │   ├── apiResponse.js
-    │   │   ├── asyncHandler.js
-    │   │   └── imageKit.js
-    │   ├── app.js
-    │   └── constants.js
-    ├── index.js
-    ├── package.json
-    └── seed_curated_foods.js
-```
+**Barakah Bites** is a modern, responsive full-stack restaurant application designed for fine-dining management. It bridges customer interactions (browsing categorized menus, reserving dining tables, and placing food delivery orders) with a centralized restaurant administration dashboard.
+
+* **Frontend Architecture:** Angular 21 with Standalone Components, Signals-based reactive state management via Zustand, and Tailwind CSS v4 styling.
+* **Backend Architecture:** RESTful API built on Node.js and Express.js (ES Modules) connected to a cloud-hosted MongoDB Atlas cluster.
+* **Security & Auth:** JWT tokens with HTTP-only cookies, password hashing with bcrypt, and Angular route guards for guest and role-based access control.
 
 ---
 
-## 2. Frontend Source Code
+## 2. Frontend Source Code (Client Side)
 
-### `client/package.json`
+### 2.1 `client/package.json`
 ```json
 {
-  "name": "barakah-bites-client",
-  "version": "1.0.0",
+  "name": "client",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -160,16 +51,19 @@ barakah-bites
     "@angular/cli": "^21.2.29",
     "@angular/compiler-cli": "^21.2.0",
     "@tailwindcss/postcss": "^4.1.12",
+    "jsdom": "^28.0.0",
     "postcss": "^8.5.3",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4.1.12",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
   }
 }
 ```
 
 ---
 
-### `client/src/index.html`
+### 2.2 `client/src/index.html`
 ```html
 <!doctype html>
 <html lang="en" class="dark">
@@ -181,15 +75,13 @@ barakah-bites
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <app-root></app-root>
-</body>
+<body><app-root></app-root></body>
 </html>
 ```
 
 ---
 
-### `client/src/main.ts`
+### 2.3 `client/src/main.ts`
 ```typescript
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
@@ -200,22 +92,37 @@ bootstrapApplication(AppComponent, appConfig).catch(console.error);
 
 ---
 
-### `client/src/app/app.config.ts`
-```typescript
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { routes } from './app.routes';
+### 2.4 `client/src/styles.css`
+```css
+@import "tailwindcss";
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes, withComponentInputBinding()),
-  ],
-};
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --color-ink-950: #0d0e12;
+  --color-ink-900: #14151b;
+  --color-ink-800: #1c1e26;
+  --color-ink-700: #2a2d38;
+  --color-saffron: #e8a33d;
+  --color-saffron-soft: #f3c677;
+}
+
+@layer base {
+  html { @apply bg-ink-950 text-neutral-200 font-sans antialiased; }
+  *:focus-visible { @apply outline-2 outline-offset-2 outline-saffron; }
+}
+@layer components {
+  .field { @apply w-full rounded-xl bg-ink-800 border border-ink-700 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-saffron focus:outline-none; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-saffron px-5 py-3 text-sm font-semibold text-ink-950 transition hover:bg-saffron-soft disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-ink-700 px-4 py-2 text-sm text-neutral-300 transition hover:bg-ink-800; }
+  .card { @apply rounded-2xl border border-ink-700 bg-ink-900; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 ```
 
 ---
 
-### `client/src/app/app.routes.ts`
+### 2.5 `client/src/app/app.routes.ts`
 ```typescript
 import { Routes } from '@angular/router';
 import { guestGuard, roleGuard } from './core/guards';
@@ -259,7 +166,20 @@ export const routes: Routes = [
 
 ---
 
-### `client/src/app/app.component.ts`
+### 2.6 `client/src/app/app.config.ts`
+```typescript
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes, withComponentInputBinding())],
+};
+```
+
+---
+
+### 2.7 `client/src/app/app.component.ts`
 ```typescript
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -275,31 +195,51 @@ export class AppComponent {}
 
 ---
 
-### `client/src/app/core/api.ts`
+### 2.8 `client/src/app/core/store-signal.ts`
 ```typescript
-import { API_URL } from './config';
+import { DestroyRef, Signal, inject, signal } from '@angular/core';
+import type { StoreApi } from 'zustand/vanilla';
 
-type Options = { method?: string; body?: unknown };
-
-export async function api<T>(path: string, { method = 'GET', body }: Options = {}): Promise<T> {
-  const isForm = body instanceof FormData;
-  const res = await fetch(API_URL + path, {
-    method,
-    credentials: 'include',
-    headers: body && !isForm ? { 'Content-Type': 'application/json' } : undefined,
-    body: body ? (isForm ? (body as FormData) : JSON.stringify(body)) : undefined,
-  });
-  const json = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(json?.message || 'Something went wrong. Please try again.');
-  return json?.data as T;
+export function select<T, U>(store: StoreApi<T>, selector: (s: T) => U): Signal<U> {
+  const sig = signal(selector(store.getState()));
+  const unsub = store.subscribe(s => sig.set(selector(s)));
+  inject(DestroyRef).onDestroy(unsub);
+  return sig.asReadonly();
 }
-
-export const errMsg = (e: unknown) => (e instanceof Error ? e.message : 'Something went wrong.');
 ```
 
 ---
 
-### `client/src/app/core/models.ts`
+### 2.9 `client/src/app/core/guards.ts`
+```typescript
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { Role, authStore } from '../store/auth.store';
+
+export const roleGuard = (role: Exclude<Role, null>): CanActivateFn => () => {
+  const router = inject(Router);
+  return (async () => {
+    await authStore.getState().init();
+    const s = authStore.getState();
+    if (s.role === role && s.account) return true;
+    return router.createUrlTree([role === 'user' ? '/login' : '/restaurant/login']);
+  })();
+};
+
+export const guestGuard: CanActivateFn = () => {
+  const router = inject(Router);
+  return (async () => {
+    await authStore.getState().init();
+    const { role, account } = authStore.getState();
+    if (!account) return true;
+    return router.createUrlTree([role === 'restaurant' ? '/restaurant/dashboard' : '/app']);
+  })();
+};
+```
+
+---
+
+### 2.10 `client/src/app/core/models.ts`
 ```typescript
 export interface User { _id: string; name: string; email: string; isOnline?: boolean }
 
@@ -361,265 +301,14 @@ export interface CustomerOrder {
 
 ---
 
-### `client/src/app/store/order.store.ts`
-```typescript
-import { createStore } from 'zustand/vanilla';
-import { Food } from '../core/models';
-import { api } from '../core/api';
+## 3. Backend Source Code (Server Side)
 
-export interface OrderItem {
-  food: Food;
-  quantity: number;
-}
-
-export interface PlacedOrder {
-  _id?: string;
-  orderId: string;
-  items: OrderItem[];
-  customerName: string;
-  phone: string;
-  address: string;
-  specialInstructions?: string;
-  totalAmount: number;
-  createdAt: string;
-  status: 'placed' | 'confirmed' | 'preparing' | 'out_for_delivery' | 'delivered' | 'cancelled';
-}
-
-interface OrderState {
-  items: OrderItem[];
-  lastOrder: PlacedOrder | null;
-  addItem: (food: Food) => void;
-  removeItem: (foodId: string) => void;
-  updateQuantity: (foodId: string, quantity: number) => void;
-  clearCart: () => void;
-  placeOrder: (details: {
-    customerName: string;
-    phone: string;
-    address: string;
-    specialInstructions?: string;
-  }) => Promise<PlacedOrder>;
-}
-
-const STORAGE_KEY = 'barakah_bites_cart';
-
-const loadSavedItems = (): OrderItem[] => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-};
-
-const saveItems = (items: OrderItem[]) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  } catch {}
-};
-
-export const orderStore = createStore<OrderState>()((set, get) => ({
-  items: loadSavedItems(),
-  lastOrder: null,
-
-  addItem: (food: Food) => {
-    const items = [...get().items];
-    const idx = items.findIndex(i => i.food._id === food._id);
-    if (idx >= 0) {
-      items[idx] = { ...items[idx], quantity: items[idx].quantity + 1 };
-    } else {
-      items.push({ food, quantity: 1 });
-    }
-    saveItems(items);
-    set({ items });
-  },
-
-  removeItem: (foodId: string) => {
-    const items = get().items.filter(i => i.food._id !== foodId);
-    saveItems(items);
-    set({ items });
-  },
-
-  updateQuantity: (foodId: string, quantity: number) => {
-    let items = [...get().items];
-    if (quantity <= 0) {
-      items = items.filter(i => i.food._id !== foodId);
-    } else {
-      items = items.map(i => (i.food._id === foodId ? { ...i, quantity } : i));
-    }
-    saveItems(items);
-    set({ items });
-  },
-
-  clearCart: () => {
-    saveItems([]);
-    set({ items: [] });
-  },
-
-  placeOrder: async details => {
-    const items = [...get().items];
-    const totalAmount = items.reduce((sum, item) => sum + item.food.price * item.quantity, 0);
-    const fallbackOrderId = 'BB-' + Math.floor(100000 + Math.random() * 900000);
-
-    let order: PlacedOrder = {
-      orderId: fallbackOrderId,
-      items,
-      customerName: details.customerName,
-      phone: details.phone,
-      address: details.address,
-      specialInstructions: details.specialInstructions,
-      totalAmount,
-      createdAt: new Date().toISOString(),
-      status: 'placed',
-    };
-
-    try {
-      const payload = {
-        customerName: details.customerName,
-        phone: details.phone,
-        address: details.address,
-        specialInstructions: details.specialInstructions,
-        items: items.map(i => ({
-          food: i.food._id,
-          name: i.food.name,
-          price: i.food.price,
-          quantity: i.quantity,
-          image: i.food.image,
-        })),
-        totalAmount,
-      };
-      const saved = await api<any>('/order/create', { method: 'POST', body: payload });
-      if (saved && saved.orderId) {
-        order = {
-          _id: saved._id,
-          orderId: saved.orderId,
-          items,
-          customerName: saved.customerName,
-          phone: saved.phone,
-          address: saved.address,
-          specialInstructions: saved.specialInstructions,
-          totalAmount: saved.totalAmount,
-          createdAt: saved.createdAt,
-          status: saved.status,
-        };
-      }
-    } catch (e) {
-      console.warn('Backend order sync fallback:', e);
-    }
-
-    saveItems([]);
-    set({ items: [], lastOrder: order });
-    return order;
-  },
-}));
-```
-
----
-
-### `client/src/app/store/admin.store.ts`
-```typescript
-import { createStore } from 'zustand/vanilla';
-import { api, errMsg } from '../core/api';
-import { Restaurant, CustomerOrder, OrderStatus } from '../core/models';
-import { authStore } from './auth.store';
-import { catalogStore } from './catalog.store';
-
-interface AdminState {
-  busy: boolean;
-  error: string | null;
-  orders: CustomerOrder[];
-  clearError: () => void;
-  updateProfile: (fd: FormData) => Promise<boolean>;
-  addFood: (fd: FormData) => Promise<boolean>;
-  updateFood: (id: string, fd: FormData) => Promise<boolean>;
-  addTable: (fd: FormData) => Promise<boolean>;
-  deleteFood: (id: string) => Promise<void>;
-  deleteTable: (id: string) => Promise<void>;
-  fetchOrders: () => Promise<void>;
-  updateOrderStatus: (id: string, status: OrderStatus) => Promise<boolean>;
-  deleteOrder: (id: string) => Promise<boolean>;
-}
-
-export const adminStore = createStore<AdminState>()((set, get) => {
-  const run = async (fn: () => Promise<unknown>) => {
-    set({ busy: true, error: null });
-    try { await fn(); set({ busy: false }); return true; }
-    catch (e) { set({ busy: false, error: errMsg(e) }); return false; }
-  };
-
-  return {
-    busy: false,
-    error: null,
-    orders: [],
-    clearError: () => set({ error: null }),
-
-    updateProfile: fd => run(async () => {
-      const r = await api<Restaurant>('/restaurant/addDetails', { method: 'POST', body: fd });
-      authStore.getState().setAccount(r);
-    }),
-
-    addFood: fd => run(async () => {
-      await api('/food/create', { method: 'POST', body: fd });
-      await catalogStore.getState().fetchFoods();
-    }),
-
-    updateFood: (id, fd) => run(async () => {
-      await api(`/food/update/${id}`, { method: 'PATCH', body: fd });
-      await catalogStore.getState().fetchFoods();
-    }),
-
-    addTable: fd => run(async () => {
-      await api('/table/create', { method: 'POST', body: fd });
-      await catalogStore.getState().fetchTables();
-    }),
-
-    deleteFood: async id => {
-      await run(async () => {
-        await api(`/food/delete/${id}`, { method: 'DELETE' });
-        await catalogStore.getState().fetchFoods();
-      });
-    },
-
-    deleteTable: async id => {
-      await run(async () => {
-        await api(`/table/delete/${id}`, { method: 'DELETE' });
-        await catalogStore.getState().fetchTables();
-      });
-    },
-
-    fetchOrders: async () => {
-      try {
-        const orders = await api<CustomerOrder[]>('/order/restaurant');
-        set({ orders: orders || [] });
-      } catch (e) {
-        console.warn('Failed to fetch orders:', e);
-      }
-    },
-
-    updateOrderStatus: (id, status) => run(async () => {
-      await api(`/order/${id}/status`, { method: 'PATCH', body: { status } });
-      const orders = get().orders.map(o => (o._id === id ? { ...o, status } : o));
-      set({ orders });
-    }),
-
-    deleteOrder: id => run(async () => {
-      await api(`/order/${id}`, { method: 'DELETE' });
-      const orders = get().orders.filter(o => o._id !== id);
-      set({ orders });
-    }),
-  };
-});
-```
-
----
-
-## 3. Backend Source Code
-
-### `server/package.json`
+### 3.1 `server/package.json`
 ```json
 {
-  "name": "barakah-bites-server",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Barakah Bites Restaurant Backend API - Node.js + Express + MongoDB",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -656,7 +345,7 @@ export const adminStore = createStore<AdminState>()((set, get) => {
 
 ---
 
-### `server/index.js`
+### 3.2 `server/index.js`
 ```javascript
 import "./src/configs/env.js";
 
@@ -666,444 +355,68 @@ import app from "./src/app.js";
 const PORT = process.env.PORT || 8000;
 
 connectDB().then(() => {
-    app.on("error", (err) => {
-        console.log("Server error:", err);
-    });
-    app.listen(PORT, () => {
-        console.log("Barakah Bites Server running on PORT:", PORT);
-    });
+    app.on("error", (err)=>{
+        console.log(err)
+    })
+    app.listen(PORT,()=>{
+        console.log("server running",PORT)
+    })
 }).catch((err) => {
-    console.log("Database connection failed:", err?.message);
-});
+    console.log("connection failed", err?.message)
+})
 ```
 
 ---
 
-### `server/src/app.js`
+### 3.3 `server/src/app.js`
 ```javascript
 import "./configs/env.js";
 
 import express from "express";
-import cors from "cors";
-import cookieParser from "cookie-parser";
+import cors from "cors"
+import cookieParser from "cookie-parser"
 
-const app = express();
+const app = express()
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:4200",
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
-}));
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+}))
+app.use(express.json())
+app.use(cookieParser())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static("public"))
 
-import userRoutes from "./routes/user.route.js";
-import restaurantRoutes from "./routes/restaurants.route.js";
-import foodRoutes from "./routes/food.route.js";
-import tableRoutes from "./routes/table.route.js";
-import reservationRoutes from "./routes/reservations.route.js";
-import orderRoutes from "./routes/order.route.js";
+import userRoutes from "./routes/user.route.js"
+import restaurantRoutes from "./routes/restaurants.route.js"
+import foodRoutes from "./routes/food.route.js"
+import tableRoutes from "./routes/table.route.js"
+import reservationRoutes from "./routes/reservations.route.js"
+import orderRoutes from "./routes/order.route.js"
 import errorHandler from "./middlewares/error.middleware.js";
 
-app.use("/api/user", userRoutes);
-app.use("/api/restaurant", restaurantRoutes);
-app.use("/api/food", foodRoutes);
-app.use("/api/table", tableRoutes);
-app.use("/api/reservation", reservationRoutes);
-app.use("/api/order", orderRoutes);
+app.use("/api/user", userRoutes)
+app.use("/api/restaurant", restaurantRoutes)
+app.use("/api/food", foodRoutes)
+app.use("/api/table", tableRoutes)
+app.use("/api/reservation", reservationRoutes)
+app.use("/api/order", orderRoutes)
 app.use(errorHandler);
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to Barakah Bites API" });
-});
+})
 
-export default app;
-```
-
----
-
-### `server/src/db/db.js`
-```javascript
-import mongoose from "mongoose";
-import { DB_NAME } from "../constants.js";
-
-const connectDB = async () => {
-    try {
-        const uri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017";
-        const connectionIn = await mongoose.connect(uri, { dbName: DB_NAME });
-        console.log("MongoDB connected successfully:", connectionIn.connection.host);
-    } catch (error) {
-        console.log("MongoDB Connection Failed:", error?.message);
-        process.exit(1);
-    }
-};
-
-export default connectDB;
-```
-
----
-
-### Database Schemas / Models
-
-#### `server/src/models/tables.models.js`
-```javascript
-import { Schema, model } from 'mongoose';
-
-const tableSchema = new Schema({
-    tableNumber: {
-        type: Number,
-        required: true
-    },
-    capacity: {
-        type: Number,
-        required: true
-    },
-    floor: {
-        type: Number,
-        required: true
-    },
-    status: {
-        type: String,
-        enum: ['available', 'reserved'],
-        default: 'available'
-    },
-    image: {
-        type: String,
-        required: true
-    },
-    fileId: {
-        type: String,
-        required: true
-    },
-    restaurant: {
-        type: Schema.Types.ObjectId,
-        ref: 'Restaurant',
-        required: true
-    }
-}, { timestamps: true });
-
-const Table = model('Table', tableSchema);
-export default Table;
-```
-
-#### `server/src/models/reservations.models.js`
-```javascript
-import { Schema, model } from 'mongoose';
-
-const reservationSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    restaurant: {
-        type: Schema.Types.ObjectId,
-        ref: 'Restaurant',
-        required: true
-    },
-    table: {
-        type: Schema.Types.ObjectId,
-        ref: 'Table',
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true
-    },
-    time: {
-        type: String,
-        required: true
-    },
-    status: {
-        type: String,
-        enum: ['pending', 'confirmed', 'cancelled'],
-        default: 'confirmed'
-    }
-}, { timestamps: true });
-
-const Reservation = model('Reservation', reservationSchema);
-export default Reservation;
-```
-
-#### `server/src/models/food.models.js`
-```javascript
-import { Schema, model } from 'mongoose';
-
-const foodSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    category: {
-        type: String,
-        enum: ['starters', 'main', 'desserts', 'beverages'],
-        default: 'main'
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    },
-    fileId: {
-        type: String,
-        required: true
-    },
-    restaurant: {
-        type: Schema.Types.ObjectId,
-        ref: 'Restaurant',
-        required: true
-    }
-}, { timestamps: true });
-
-const Food = model('Food', foodSchema);
-export default Food;
-```
-
-#### `server/src/models/order.models.js`
-```javascript
-import { Schema, model } from 'mongoose';
-
-const orderItemSchema = new Schema({
-  food: {
-    type: Schema.Types.ObjectId,
-    ref: 'Food',
-    required: false
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  quantity: {
-    type: Number,
-    required: true,
-    min: 1
-  },
-  image: {
-    type: String,
-    required: false
-  }
-}, { _id: false });
-
-const orderSchema = new Schema({
-  orderId: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  restaurant: {
-    type: Schema.Types.ObjectId,
-    ref: 'Restaurant',
-    required: true
-  },
-  customerName: {
-    type: String,
-    required: true
-  },
-  phone: {
-    type: String,
-    required: true
-  },
-  address: {
-    type: String,
-    required: true
-  },
-  specialInstructions: {
-    type: String,
-    required: false
-  },
-  items: {
-    type: [orderItemSchema],
-    required: true
-  },
-  totalAmount: {
-    type: Number,
-    required: true
-  },
-  status: {
-    type: String,
-    enum: ['placed', 'preparing', 'out_for_delivery', 'delivered', 'cancelled'],
-    default: 'placed'
-  }
-}, { timestamps: true });
-
-const Order = model('Order', orderSchema);
-export default Order;
-```
-
----
-
-### Key Backend Controllers & Endpoints
-
-#### `server/src/controllers/order.controller.js`
-```javascript
-import { ApiError } from "../utils/apiError.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { ApiResponse } from "../utils/apiResponse.js";
-import Order from "../models/order.models.js";
-import Restaurant from "../models/restaurants.models.js";
-
-// POST /api/order/create
-const createOrder = asyncHandler(async (req, res) => {
-  const { customerName, phone, address, specialInstructions, items, totalAmount, restaurantId } = req.body;
-
-  if (!customerName || !phone || !address) {
-    throw new ApiError(400, "Customer name, phone, and address are required");
-  }
-
-  if (!items || !Array.isArray(items) || items.length === 0) {
-    throw new ApiError(400, "At least one item is required in the order");
-  }
-
-  let restaurant = null;
-  if (restaurantId) {
-    restaurant = await Restaurant.findById(restaurantId);
-  }
-  if (!restaurant) {
-    restaurant = await Restaurant.findOne();
-  }
-  if (!restaurant) {
-    throw new ApiError(404, "Restaurant not found");
-  }
-
-  const orderId = 'BB-' + Math.floor(100000 + Math.random() * 900000);
-
-  const formattedItems = items.map(item => ({
-    food: item.food?._id || item.food || null,
-    name: item.food?.name || item.name || 'Dish',
-    price: Number(item.food?.price || item.price || 0),
-    quantity: Number(item.quantity || 1),
-    image: item.food?.image || item.image || ''
-  }));
-
-  const calculatedTotal = totalAmount || formattedItems.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
-
-  const order = await Order.create({
-    orderId,
-    restaurant: restaurant._id,
-    customerName,
-    phone,
-    address,
-    specialInstructions: specialInstructions || '',
-    items: formattedItems,
-    totalAmount: calculatedTotal,
-    status: 'placed'
-  });
-
-  if (!order) {
-    throw new ApiError(500, "Failed to create order");
-  }
-
-  res.status(201).json(new ApiResponse(201, order, "Order placed successfully"));
-});
-
-// GET /api/order/restaurant
-const getRestaurantOrders = asyncHandler(async (req, res) => {
-  const restaurantId = req.restaurant?._id;
-  if (!restaurantId) {
-    throw new ApiError(401, "Unauthorized: Restaurant ID required");
-  }
-
-  const orders = await Order.find({ restaurant: restaurantId }).sort({ createdAt: -1 });
-  res.status(200).json(new ApiResponse(200, orders, "Orders retrieved successfully"));
-});
-
-// PATCH /api/order/:id/status
-const updateOrderStatus = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const { status } = req.body;
-
-  const validStatuses = ['placed', 'preparing', 'out_for_delivery', 'delivered', 'cancelled'];
-  if (!status || !validStatuses.includes(status)) {
-    throw new ApiError(400, `Invalid status. Must be one of: ${validStatuses.join(', ')}`);
-  }
-
-  const restaurantId = req.restaurant?._id;
-  const order = await Order.findOne({ _id: id, restaurant: restaurantId });
-
-  if (!order) {
-    throw new ApiError(404, "Order not found");
-  }
-
-  order.status = status;
-  await order.save();
-
-  res.status(200).json(new ApiResponse(200, order, "Order status updated successfully"));
-});
-
-// DELETE /api/order/:id
-const deleteOrder = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const restaurantId = req.restaurant?._id;
-  const order = await Order.findOneAndDelete({ _id: id, restaurant: restaurantId });
-
-  if (!order) {
-    throw new ApiError(404, "Order not found");
-  }
-
-  res.status(200).json(new ApiResponse(200, null, "Order deleted successfully"));
-});
-
-export { createOrder, getRestaurantOrders, updateOrderStatus, deleteOrder };
-```
-
-#### `server/src/routes/order.route.js`
-```javascript
-import { Router } from "express";
-import { createOrder, getRestaurantOrders, updateOrderStatus, deleteOrder } from "../controllers/order.controller.js";
-import { verifyRestaurants } from "../middlewares/restaurants.middleware.js";
-
-const router = Router();
-
-router.route("/create").post(createOrder);
-router.route("/restaurant").get(verifyRestaurants, getRestaurantOrders);
-router.route("/:id/status").patch(verifyRestaurants, updateOrderStatus);
-router.route("/:id").delete(verifyRestaurants, deleteOrder);
-
-export default router;
-```
-
-#### `server/src/routes/food.route.js`
-```javascript
-import { Router } from "express";
-import { createFood, updateFood, deleteFood, getAllFoods } from "../controllers/food.controller.js";
-import { verifyRestaurants } from "../middlewares/restaurants.middleware.js";
-import { upload } from "../middlewares/multer.middleware.js";
-
-const router = Router();
-
-router.route("/create").post(verifyRestaurants, upload.single("image"), createFood);
-router.route("/update/:id").patch(verifyRestaurants, upload.single("image"), updateFood);
-router.route("/delete/:id").delete(verifyRestaurants, deleteFood);
-router.route("/all").get(getAllFoods);
-
-export default router;
+export default app
 ```
 
 ---
 
 ## 4. Academic Project Summary
 
-| Parameter | Details |
-| :--- | :--- |
-| **Project Title** | Barakah Bites — Restaurant Reservation & Table Management System |
-| **Developer / Author** | **Adil Mairaj** |
-| **Front-End Architecture** | Angular 21, Standalone Components, Signals, Tailwind CSS v4, Zustand Store |
-| **Back-End Architecture** | Node.js, Express.js (REST API, ES Modules), JWT Authentication, Multer |
-| **Database** | MongoDB Atlas (`restaurantDB` cluster) with Mongoose ORM |
-| **Key Functionalities** | Floor Plan Live Table Reservation, Food Ordering with Quantity Stepper, Dynamic Cart, Real-Time Admin Kitchen Orders Dispatch, Course Categorization, Price Editing Modal |
-| **GitHub Repository** | [https://github.com/adilmairaj-dev/BARAKAH-BITES](https://github.com/adilmairaj-dev/BARAKAH-BITES) |
-
----
-*Documentation compiled for academic examination and submission.*
+* **Project Title:** Barakah Bites — Restaurant Reservation & Table Management System
+* **Author / Developer:** Adil Mairaj
+* **Architecture:** Decoupled Full-Stack Architecture (Client-Server Model)
+* **Client Implementation:** Angular 21, TypeScript, Tailwind CSS v4, Signals, Zustand
+* **Server Implementation:** Node.js, Express.js (ES Modules), Mongoose, JWT Authentication
+* **Status:** Verified, Tested, and Fully Functional
